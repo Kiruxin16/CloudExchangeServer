@@ -1,7 +1,6 @@
-package com.java.cloudStore;
+package com.java.cloudStore.api;
 
 import lombok.Data;
-import lombok.Value;
 
 @Data
 public class FileRequest implements CloudMessage {

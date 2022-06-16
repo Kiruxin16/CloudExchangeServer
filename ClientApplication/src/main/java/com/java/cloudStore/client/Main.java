@@ -1,4 +1,4 @@
-package com.java.cloudStore;
+package com.java.cloudStore.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

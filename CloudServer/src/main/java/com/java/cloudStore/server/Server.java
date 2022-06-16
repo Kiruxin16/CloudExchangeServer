@@ -1,8 +1,7 @@
-package com.java.cloudStore;
+package com.java.cloudStore.server;
 
 
-import com.java.cloudStore.handlers.FIleInboundHandler;
-import com.java.cloudStore.handlers.StringInboundHandler;
+import com.java.cloudStore.server.handlers.FileInboundHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -31,12 +30,13 @@ public class Server {
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new FIleInboundHandler()
+                                    new FileInboundHandler()
                             );
 
                         }
                     });
                     ChannelFuture future =serv.bind(8189).sync();
+
                     future.channel().closeFuture().sync();
 
         }catch (Exception exception){

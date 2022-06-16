@@ -1,4 +1,4 @@
-package com.java.cloudStore;
+package com.java.cloudStore.api;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Data
 public class ListFiles implements CloudMessage {
 
-    List<String> fileList;
+   private final List<String> fileList;
 
     public ListFiles (Path path) throws IOException {
         fileList= Files.list(path).map(p->p.getFileName().toString())
