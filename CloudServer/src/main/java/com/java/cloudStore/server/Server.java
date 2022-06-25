@@ -36,6 +36,7 @@ public class Server {
                         }
                     });
                     ChannelFuture future =serv.bind(8189).sync();
+                    future.channel().closeFuture().addListener((cf)-> System.out.println("Client  disconnected"));
 
                     future.channel().closeFuture().sync();
 

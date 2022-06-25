@@ -44,12 +44,14 @@ public class AuthController implements Initializable {
         controller.authenticate(loginField.getText(), passField.getText());
     }
 
-    public void getAuthMessage(String msg) {
+    public void setAuthMessage(String msg) {
 
-        Platform.runLater(() -> msgLabel.setText(msg));
-        msgLabel.setText("");
-        loginField.clear();
-        passField.clear();
+        Platform.runLater(() -> {
+            msgLabel.setText(msg);
+            msgLabel.setText("");
+            loginField.clear();
+            passField.clear();
+        });
     }
 
     public void getRegMessage(boolean success, String msg) {

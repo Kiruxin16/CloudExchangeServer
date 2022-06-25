@@ -17,4 +17,13 @@ public class ListFiles implements CloudMessage {
         fileList= Files.list(path).map(p->p.getFileName().toString())
                 .collect(Collectors.toList());
     }
+
+    public ListFiles (Path path,List<Path> addList) throws IOException {
+        List<String> ownFiles= Files.list(path).map(p->p.getFileName().toString())
+                .collect(Collectors.toList());
+        for(Path pth : addList){
+            ownFiles.add(pth.getFileName().toString());
+        }
+        fileList=ownFiles;
+    }
 }

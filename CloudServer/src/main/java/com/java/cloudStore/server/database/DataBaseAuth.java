@@ -2,8 +2,11 @@ package com.java.cloudStore.server.database;
 
 import com.java.cloudStore.api.AuthResponse;
 import com.java.cloudStore.api.RegResponse;
+import com.java.cloudStore.api.ShareResponse;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseAuth {
 
@@ -46,6 +49,38 @@ public class DataBaseAuth {
             e.printStackTrace();
             return new RegResponse(false,"error");
         }
+
+    }
+    public List<String> getSharedList(String login){
+        List<String> shared =new ArrayList<>();
+        try {
+            dbHandler.connect();
+            dbHandler.getSharedList(login,shared);
+            if (shared.size()<=1){
+                shared.clear();
+            }
+            return shared;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return shared;
+        }finally {
+            dbHandler.disconnect();
+        }
+    }
+
+    public ShareResponse sharingFiles(String name, String login, String path){
+        try{
+            dbHandler.connect();
+            dbHandler.shareFile(name,login,path);
+            return new ShareResponse(true,"");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ShareResponse(false,"cannot share");
+        }finally {
+            dbHandler.disconnect();
+        }
+
 
     }
 

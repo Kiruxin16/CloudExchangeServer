@@ -9,6 +9,8 @@ import java.net.Socket;
 
 public class NetWork {
 
+
+
     private Socket socket;
     private static final int PORT =8189;
     private static final String ADDRESS = "localhost";
@@ -47,6 +49,9 @@ public class NetWork {
             e.printStackTrace();
         }
     }
+    public Socket getSocket() {
+        return socket;
+    }
 
     public CloudMessage read() throws IOException, ClassNotFoundException {
         return (CloudMessage) in.readObject();
@@ -55,6 +60,10 @@ public class NetWork {
     public void write(CloudMessage msg) throws IOException {
         out.writeObject(msg);
         out.flush();
+    }
+
+    public void disconnect() throws IOException {
+        socket.close();
     }
 
 }
